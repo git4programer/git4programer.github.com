@@ -1,5 +1,6 @@
 ---
 layout : default
+title : git4programer的个人博客
 ---
 
 
@@ -15,3 +16,11 @@ git stash apply 把隐藏的取出来.
 git branch -D 分支号 
 ###创建fasdfdf版本号的分支
 git checkout fasdfdf -b 分支号
+
+## 文章列表
+<ul>
+	{% for post in site.posts %}
+	<li>{{ post.date | date_to_string}} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> </li>
+	{% endfor %}
+
+</ul>

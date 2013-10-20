@@ -1,6 +1,7 @@
 ---
 layout : linux
-title : linux 
+title : linux相关的文章
 ---
 
-> 暂时还没有linux相关的文章
+
+这是linux下面的文章列表
