@@ -1,6 +1,6 @@
 ---
 layout: linux
-title: "hello world"
+title: "linux 这是标题"
 description: "linux"
 category: "linux"
 tags: []
