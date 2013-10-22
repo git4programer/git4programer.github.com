@@ -15,7 +15,7 @@ title : git4programer的个人博客
 ## 文章列表
 <ul>
 	{% for post in site.posts %}
-	<li>{{ post.date | date_to_string }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> </li>
+	<li>{{ post.date | date_to_string }} <a href="{{ site.production_url }}{{ post.url }}">{{ post.title }}</a> </li>
 	{% endfor %}
 
 </ul>
