@@ -1,6 +1,238 @@
 ---
 layout : vim
-title : vim
+title : vim从零基础入门
 ---
 
-> 暂时还没有vim的相关文章
+# vim玩家
+
+> 给你一个vim命令，你能折腾一个晚上，等你学会了配置vim，你能为它折腾一辈子。
+
+---- 
+## 一、入门
+----
+### vim的常识
+
+[vim wiki](http://zh.wikipedia.org/wiki/Vim)
+
+**主要是要理解它是一个模式编辑器**
+
+### vim的模式
+
+**具有６种基本模式和５种派生模式**
+
+	* 基本模式　
+		1. 普通模式　（vim启动时的模式，这时你可以移动光标）
+		2. 插入模式　（这个模式故名思义就是插入字符串的，可以在普通模式下按i,I,A,a,S,s进入)
+		3. 可视模式　（可以说这个就是键盘的选择模式）
+		4. 选择模式　(这个模式就是用鼠标进行文本的高亮选择)
+		5. 命令行模式　(这个模式你可以执行一些vim的命令)
+		6. EX模式　(也就是执行多个vim的命令，命令行模式只会执行一个命令)
+	* 派生模式
+		1. 插入普通模式　(执行一个普通模式的操作后就回到插入模式,ctrl-o进入)
+		2. 插入可视模式　(执行一个可视的操作，当选择区域取消时回到插入模式，ctrl-o进入普通模式选择一个可视的规则开始)
+		3. 插入的选择模式　（插入模式下面拖拽鼠标进入，当选区取消时时候，vim返回插入模式）
+		4. 替换模式　（替换一个字，或者一段文本。普通模式下面按r 或者R进入）
+
+**也有人把它分为三种模式**
+
+	1. 命令模式。
+	2. 插入模式。
+	3. 底行模式。
+
+它们之间的关系就像下图：
+
+![vim mode](./vimmode.png)
+
+
+### 安装
+
+	1. 在linux下面一般都会已经安装有vim或者vi，你可以启动一个终端，输入vim或者vi来查看是否已经安装了。要是确实没有安装，你也可以安装它。可以使用源码安装和包安装。包安装会根据不同版本的系统用不同的安装方法：
+	
+	#debian系列的系统
+	#网络
+	sudo apt-get install vim* 
+	#源码安装
+	#安装编译时所需要用到的库
+	sudo apt-get install libncurses5-dev
+	# 安装Mercurial (用于下载vim源码包)
+	sudo apt-get install mercurial
+	# 下载vim源码
+	hg clone https://vim.googlecode.com/hg/ vim
+	# 进入源码包配置编译安装vim
+	cd vim
+	./configure \
+	--enable-pythoninterp=yes \
+	--enable-perlinterp=yes \
+	--enable-rubyinterp=yes \
+	--enable-luainterp=yes \
+	--enable-tclinterp \
+	--enable-xim \
+	--enable-multibyte \
+	--enable-sniff \
+	--enable-fontset \
+	--enable-cscope \
+	--enable-gtk2-check \
+	--with-features=huge \
+	#如果检查编译环境没有错，就会生成好配置环境。报错那也应该是依赖关系没有解决，安装上对应的依赖包重新生成配置环境就行了。
+	#编译并安装
+	make && sudo make install
+
+	#redhat系列的系统
+	网络安装
+	yum -y install vim*
+	#源码安装
+	#步骤与debian的一样。只是安装依赖包的命令不一样而已。
+	yum install ncurses-devel
+	yum install mercurial
+	hg clone https://vim.googlecode.com/hg/ vim
+	#剩下的步骤就可debian下面的一样了。
+
+	windows下面的安装。那就是点击下一步，下一步就可以了。安装包可以在一般的软件安装软件(金山软件，360软件中心)中找到。
+	如果你不想用这些软件来安装，那么你可以到官网去下载。
+
+[vim官网](http://www.vim.org)
+
+__安装完成后，linux系统下面就会多出一个vim命令__
+
+### 开始简单的使用
+
+既然vim是linux下面的命令，那么就可以用 vim --help 来查看一下它的用法。
+		
+	VIM - Vi IMproved 7.4 (2013 Aug 10, compiled Nov  7 2013 00:27:38)
+
+	用法: vim [参数] [文件 ..]       编辑指定的文件
+	  或: vim [参数] -               从标准输入(stdin)读取文本
+	  或: vim [参数] -t tag          编辑 tag 定义处的文件
+	  或: vim [参数] -q [errorfile]  编辑第一个出错处的文件
+
+	参数:
+	   --			在这以后只有文件名
+	   -g			使用图形界面 (同 "gvim")
+	   -f  或  --nofork	前台: 启动图形界面时不 fork
+	   -v			Vi 模式 (同 "vi")
+	   -e			Ex 模式 (同 "ex")
+	   -E			Improved Ex mode
+	   -s			安静(批处理)模式 (只能与 "ex" 一起使用)
+	   -d			Diff 模式 (同 "vimdiff")
+	   -y			容易模式 (同 "evim"，无模式)
+	   -R			只读模式 (同 "view")
+	   -Z			限制模式 (同 "rvim")
+	   -m			不可修改(写入文件)
+	   -M			文本不可修改
+	   -b			二进制模式
+	   -l			Lisp 模式
+	   -C			兼容传统的 Vi: 'compatible'
+	   -N			不完全兼容传统的 Vi: 'nocompatible'
+	   -V[N][fname]		Be verbose [level N] [log messages to fname]
+	   -D			调试模式
+	   -n			不使用交换文件，只使用内存
+	   -r			列出交换文件并退出
+	   -r (跟文件名)		恢复崩溃的会话
+	   -L			同 -r
+	   -A			以 Arabic 模式启动
+	   -H			以 Hebrew 模式启动
+	   -F			以 Farsi 模式启动
+	   -T <terminal>	设定终端类型为 <terminal>
+	   -u <vimrc>		使用 <vimrc> 替代任何 .vimrc
+	   -U <gvimrc>		使用 <gvimrc> 替代任何 .gvimrc
+	   --noplugin		不加载 plugin 脚本
+	   -P[N]		打开 N 个标签页 (默认值: 每个文件一个)
+	   -o[N]		打开 N 个窗口 (默认值: 每个文件一个)
+	   -O[N]		同 -o 但垂直分割
+	   +			启动后跳到文件末尾
+	   +<lnum>		启动后跳到第 <lnum> 行
+	   --cmd <command>	加载任何 vimrc 文件前执行 <command>
+	   -c <command>		加载第一个文件后执行 <command>
+	   -S <session>		加载第一个文件后执行文件 <session>
+	   -s <scriptin>	从文件 <scriptin> 读入正常模式的命令
+	   -w <scriptout>	将所有输入的命令追加到文件 <scriptout>
+	   -W <scriptout>	将所有输入的命令写入到文件 <scriptout>
+	   -x			编辑加密的文件
+	   -display <display>	将 vim 与指定的 X-server 连接
+	   -X			不连接到 X Server
+	   --remote <files>	如有可能，在 Vim 服务器上编辑文件 <files>
+	   --remote-silent <files>  同上，找不到服务器时不抱怨
+	   --remote-wait <files>  同 --remote 但会等待文件完成编辑
+	   --remote-wait-silent <files>  同上，找不到服务器时不抱怨
+	   --remote-tab[-wait][-silent] <files>  As --remote but use tab page per file
+	   --remote-send <keys>	送出 <keys> 到 Vim 服务器并退出
+	   --remote-expr <expr>	在 Vim 服务器上求 <expr> 的值并打印结果
+	   --serverlist		列出可用的 Vim 服务器名称并退出
+	   --servername <name>	发送到或成为 Vim 服务器 <name>
+	   --startuptime <file>	Write startup timing messages to <file>
+	   -i <viminfo>		使用 <viminfo> 取代 .viminfo
+	   -h  或  --help	打印帮助(本信息)并退出
+	   --version		打印版本信息并退出
+
+	gvim (Athena 版本) 可识别的参数:
+	   -display <display>	在 <display> 上运行 vim
+	   -iconic		启动后最小化
+	   -background <color>	使用 <color> 作为背景色 (也可用 -bg)
+	   -foreground <color>	使用 <color> 作为一般文字颜色 (也可用 -fg)
+	   -font <font>	使用 <font> 作为一般字体 (也可用 -fn)
+	   -boldfont <font>	使用 <font> 作为粗体字体
+	   -italicfont <font>	使用 <font> 作为斜体字体
+	   -geometry <geom>	使用 <geom> 作为初始位置 (也可用 -geom)
+	   -borderwidth <width>	设定边框宽度为 <width> (也可用 -bw)
+	   -scrollbarwidth <width> 设定滚动条宽度为 <width> (也可用 -sw)
+	   -menuheight <height>	设定菜单栏高度为 <height> (也可用 -mh)
+	   -reverse		使用反显 (也可用 -rv)
+	   +reverse		不使用反显 (也可用 +rv)
+	   -xrm <resource>	设定指定的资源
+
+里面的说明已经很详细了。你只需要去操作理解和验证就可以了。
+
+我最经常使用的就是直接 vim filename 
+
+刚进入vim时，那是普通模式，此时你是无法对它进行输入的。只有你进入了插入模式，你才可以输入。
+进入输入模式的方法是按以下的字母：
+
+	i	光标前插入
+	I	行首插入
+	a	光标后插入
+	A	行尾插入
+	o	当前行下面新建一行插入
+	O	当前行上面新建一行插入
+	s	删除当前光标下面的字符，并且插入
+	S	删除当前行并且插入
+
+当你输入完成时，要保存文件时。那么你需要从先从插入模式退出普通模式再进行保存，从输入模式到普通模式的按键是：
+
+	EXC   （一般都是电脑中最左上角的那个按键 ，不知道你有没有用过这个一按键）
+	ctrl-c 
+	ctrl-[
+
+__其中"ctrl-c" 与EXC 和"ctrl-["是有点区别的__
+你按了这些键后就已经从插入模式进入了普通模式。
+
+你想要保存文件，那么你需要进入命令模式（底行模式）
+输入 英文状态下面的冒号 :
+进入命令模式后，输入"w" ，回车，此时文件就保存了，（如果没有文件名，它会提示你要输入文件名，此时你只需要在w空格后加上你要保存的路径加文件名就可以了，如果是在当前的文件夹下面，那么只需要加文件名就可以了）
+回车后，文件就会被保存，并且回到普通模式当中。
+
+要是这时你已经对文件已经操作完成了，不需要再编辑了，需要退出编辑。那么同样，你需要到普通模式再到命令模式，输入q回车，那vim就会退出了。如果你的文件有改动，还没有保存，它会提示你要先保存文件才可以退出，如果你确实是不想保存退出，那么你就需要在q后面加一个叹号。这时它就不会保存你的文件修改也会退出。
+
+其中保存和退出这两个可以一起使用。即进入命令模式后："wq" ，保存并且退出。
+
+如果你要放弃当前的所有修改，这时你当然可以进入命令模式然后再按"q!"退出后再重新打开这一个文件。其实有一个更快的命令，那就是"e!",这样它就会把上面那些的命令都执行了。
+
+**tips** 如果你的文件已经有了文件名，你确实又是想保存并且退出，那么还有一个快捷键可以在普通模式下面用 ZZ
+
+----
+**总结** 
+
+	学到这里，相信你是可以用vim来:编辑文件,修改文件，保存文件。这些都是所有编辑器的基本功能。但是暂时看来，这样的一个编辑器比windows下面的记事本都要糟糕。为什么还要用它？但是我告诉你，如果你只是只用vim的这些功能，你真的是不要用vim了。下面就开始介绍一下它比其它编辑器操作方便的地方。
+
+
+### vim中的小技巧
+
+删除没有空格的空行
+	:g/^$/d
+删除空行中的空格 (把空格到行尾替换为空)
+	:%s/^\s\+$//
+或：
+	:%s/ //gi
+
+删除多行空行为单一空行
+	:%s/\n\{2,\}/\r\r/
+
