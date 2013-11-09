@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>vim从零基础入门</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<!-- Bootstrap -->
+<link rel="stylesheet" href="/bootstrap3/dist/css/bootstrap.min.css" media="screen">
+<link rel="stylesheet" href="/css/index.css" type="text/css" media="screen" charset="utf-8"0>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.6.2/html5shiv.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/bootstrap/docs-assets/js/respond.min.js" type="text/javascript" charset="utf-8"></script>
+ <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="http://git4programer.github.io">你就只是一个过客</a>
+		</div>
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="http://git4programer.github.io">首页</a></li>
+				<li><a href="http://git4programer.github.io/php">php</a></li>
+				<li><a href="http://git4programer.github.io/linux">linux</a></li>
+				<li class="active"><a href="http://git4programer.github.io/vim">vim</a></li>
+				<li><a href="http://git4programer.github.io/git">git</a></li>
+				
+				
+            	
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="starter-template">
+		<h1 id='vim'>vim玩家</h1>
+
+<blockquote>
+<p>给你一个vim命令，你能折腾一个晚上，等你学会了配置vim，你能为它折腾一辈子。</p>
+</blockquote>
+<hr />
+<h2 id='id9'>一、入门</h2>
+<hr />
+<h3 id='11vim'>1.1vim的常识</h3>
+
+<p><a href='http://zh.wikipedia.org/wiki/Vim'>vim wiki</a></p>
+
+<p><strong>主要是要理解它是一个模式编辑器</strong></p>
+
+<h3 id='12vim'>1.2vim的模式</h3>
+
+<p><strong>具有６种基本模式和５种派生模式</strong></p>
+
+<pre><code>* 基本模式　
+	1. 普通模式　（vim启动时的模式，这时你可以移动光标）
+	2. 插入模式　（这个模式故名思义就是插入字符串的，可以在普通模式下按i,I,A,a,S,s进入)
+	3. 可视模式　（可以说这个就是键盘的选择模式）
+	4. 选择模式　(这个模式就是用鼠标进行文本的高亮选择)
+	5. 命令行模式　(这个模式你可以执行一些vim的命令)
+	6. EX模式　(也就是执行多个vim的命令，命令行模式只会执行一个命令)
+* 派生模式
+	1. 插入普通模式　(执行一个普通模式的操作后就回到插入模式,ctrl-o进入)
+	2. 插入可视模式　(执行一个可视的操作，当选择区域取消时回到插入模式，ctrl-o进入普通模式选择一个可视的规则开始)
+	3. 插入的选择模式　（插入模式下面拖拽鼠标进入，当选区取消时时候，vim返回插入模式）
+	4. 替换模式　（替换一个字，或者一段文本。普通模式下面按r 或者R进入）</code></pre>
+
+<p><strong>也有人把它分为三种模式</strong></p>
+
+<pre><code>1. 命令模式。
+2. 插入模式。
+3. 底行模式。</code></pre>
+
+<p>它们之间的关系就像下图：</p>
+
+<p><img alt='vim mode' src='./vimmode.png' /></p>
+
+<h3 id='13'>1.3安装</h3>
+
+<ol>
+<li>
+<p>在linux下面一般都会已经安装有vim或者vi，你可以启动一个终端，输入vim或者vi来查看是否已经安装了。要是确实没有安装，你也可以安装它。可以使用源码安装和包安装。包安装会根据不同版本的系统用不同的安装方法：</p>
+
+<pre><code>#debian系列的系统
+#网络
+sudo apt-get install vim* 
+#源码安装
+#安装编译时所需要用到的库
+sudo apt-get install libncurses5-dev
+# 安装Mercurial (用于下载vim源码包)
+sudo apt-get install mercurial
+# 下载vim源码
+hg clone https://vim.googlecode.com/hg/ vim
+# 进入源码包配置编译安装vim
+cd vim
+./configure \
+--enable-pythoninterp=yes \
+--enable-perlinterp=yes \
+--enable-rubyinterp=yes \
+--enable-luainterp=yes \
+--enable-tclinterp \
+--enable-xim \
+--enable-multibyte \
+--enable-sniff \
+--enable-fontset \
+--enable-cscope \
+--enable-gtk2-check \
+--with-features=huge \
+#如果检查编译环境没有错，就会生成好配置环境。报错那也应该是依赖关系没有解决，安装上对应的依赖包重新生成配置环境就行了。
+#编译并安装
+make &amp;&amp; sudo make install
+
+#redhat系列的系统
+网络安装
+yum -y install vim*
+#源码安装
+#步骤与debian的一样。只是安装依赖包的命令不一样而已。
+yum install ncurses-devel
+yum install mercurial
+hg clone https://vim.googlecode.com/hg/ vim
+#剩下的步骤就可debian下面的一样了。</code></pre>
+</li>
+</ol>
+
+<p>windows下面的安装。那就是点击下一步，下一步就可以了。安装包可以在一般的软件安装软件(金山软件，360软件中心)中找到。 如果你不想用这些软件来安装，那么你可以到官网去下载。</p>
+
+<p><a href='http://www.vim.org'>vim官网</a></p>
+
+<p><strong>安装完成后，linux系统下面就会多出一个vim命令</strong></p>
+
+<h3 id='14'>1.4开始简单的使用</h3>
+
+<p>既然vim是linux下面的命令，那么就可以用 vim &#8211;help 来查看一下它的用法。</p>
+
+<pre><code>VIM - Vi IMproved 7.4 (2013 Aug 10, compiled Nov  7 2013 00:27:38)
+
+用法: vim [参数] [文件 ..]       编辑指定的文件
+  或: vim [参数] -               从标准输入(stdin)读取文本
+  或: vim [参数] -t tag          编辑 tag 定义处的文件
+  或: vim [参数] -q [errorfile]  编辑第一个出错处的文件
+
+参数:
+   --			在这以后只有文件名
+   -g			使用图形界面 (同 &quot;gvim&quot;)
+   -f  或  --nofork	前台: 启动图形界面时不 fork
+   -v			Vi 模式 (同 &quot;vi&quot;)
+   -e			Ex 模式 (同 &quot;ex&quot;)
+   -E			Improved Ex mode
+   -s			安静(批处理)模式 (只能与 &quot;ex&quot; 一起使用)
+   -d			Diff 模式 (同 &quot;vimdiff&quot;)
+   -y			容易模式 (同 &quot;evim&quot;，无模式)
+   -R			只读模式 (同 &quot;view&quot;)
+   -Z			限制模式 (同 &quot;rvim&quot;)
+   -m			不可修改(写入文件)
+   -M			文本不可修改
+   -b			二进制模式
+   -l			Lisp 模式
+   -C			兼容传统的 Vi: &#39;compatible&#39;
+   -N			不完全兼容传统的 Vi: &#39;nocompatible&#39;
+   -V[N][fname]		Be verbose [level N] [log messages to fname]
+   -D			调试模式
+   -n			不使用交换文件，只使用内存
+   -r			列出交换文件并退出
+   -r (跟文件名)		恢复崩溃的会话
+   -L			同 -r
+   -A			以 Arabic 模式启动
+   -H			以 Hebrew 模式启动
+   -F			以 Farsi 模式启动
+   -T &lt;terminal&gt;	设定终端类型为 &lt;terminal&gt;
+   -u &lt;vimrc&gt;		使用 &lt;vimrc&gt; 替代任何 .vimrc
+   -U &lt;gvimrc&gt;		使用 &lt;gvimrc&gt; 替代任何 .gvimrc
+   --noplugin		不加载 plugin 脚本
+   -P[N]		打开 N 个标签页 (默认值: 每个文件一个)
+   -o[N]		打开 N 个窗口 (默认值: 每个文件一个)
+   -O[N]		同 -o 但垂直分割
+   +			启动后跳到文件末尾
+   +&lt;lnum&gt;		启动后跳到第 &lt;lnum&gt; 行
+   --cmd &lt;command&gt;	加载任何 vimrc 文件前执行 &lt;command&gt;
+   -c &lt;command&gt;		加载第一个文件后执行 &lt;command&gt;
+   -S &lt;session&gt;		加载第一个文件后执行文件 &lt;session&gt;
+   -s &lt;scriptin&gt;	从文件 &lt;scriptin&gt; 读入正常模式的命令
+   -w &lt;scriptout&gt;	将所有输入的命令追加到文件 &lt;scriptout&gt;
+   -W &lt;scriptout&gt;	将所有输入的命令写入到文件 &lt;scriptout&gt;
+   -x			编辑加密的文件
+   -display &lt;display&gt;	将 vim 与指定的 X-server 连接
+   -X			不连接到 X Server
+   --remote &lt;files&gt;	如有可能，在 Vim 服务器上编辑文件 &lt;files&gt;
+   --remote-silent &lt;files&gt;  同上，找不到服务器时不抱怨
+   --remote-wait &lt;files&gt;  同 --remote 但会等待文件完成编辑
+   --remote-wait-silent &lt;files&gt;  同上，找不到服务器时不抱怨
+   --remote-tab[-wait][-silent] &lt;files&gt;  As --remote but use tab page per file
+   --remote-send &lt;keys&gt;	送出 &lt;keys&gt; 到 Vim 服务器并退出
+   --remote-expr &lt;expr&gt;	在 Vim 服务器上求 &lt;expr&gt; 的值并打印结果
+   --serverlist		列出可用的 Vim 服务器名称并退出
+   --servername &lt;name&gt;	发送到或成为 Vim 服务器 &lt;name&gt;
+   --startuptime &lt;file&gt;	Write startup timing messages to &lt;file&gt;
+   -i &lt;viminfo&gt;		使用 &lt;viminfo&gt; 取代 .viminfo
+   -h  或  --help	打印帮助(本信息)并退出
+   --version		打印版本信息并退出
+
+gvim (Athena 版本) 可识别的参数:
+   -display &lt;display&gt;	在 &lt;display&gt; 上运行 vim
+   -iconic		启动后最小化
+   -background &lt;color&gt;	使用 &lt;color&gt; 作为背景色 (也可用 -bg)
+   -foreground &lt;color&gt;	使用 &lt;color&gt; 作为一般文字颜色 (也可用 -fg)
+   -font &lt;font&gt;	使用 &lt;font&gt; 作为一般字体 (也可用 -fn)
+   -boldfont &lt;font&gt;	使用 &lt;font&gt; 作为粗体字体
+   -italicfont &lt;font&gt;	使用 &lt;font&gt; 作为斜体字体
+   -geometry &lt;geom&gt;	使用 &lt;geom&gt; 作为初始位置 (也可用 -geom)
+   -borderwidth &lt;width&gt;	设定边框宽度为 &lt;width&gt; (也可用 -bw)
+   -scrollbarwidth &lt;width&gt; 设定滚动条宽度为 &lt;width&gt; (也可用 -sw)
+   -menuheight &lt;height&gt;	设定菜单栏高度为 &lt;height&gt; (也可用 -mh)
+   -reverse		使用反显 (也可用 -rv)
+   +reverse		不使用反显 (也可用 +rv)
+   -xrm &lt;resource&gt;	设定指定的资源</code></pre>
+
+<p>里面的说明已经很详细了。你只需要去操作理解和验证就可以了。</p>
+
+<p>我最经常使用的就是直接 vim filename</p>
+
+<p>刚进入vim时，那是普通模式，此时你是无法对它进行输入的。只有你进入了插入模式，你才可以输入。 进入输入模式的方法是按以下的字母：</p>
+
+<pre><code>i	光标前插入
+I	行首插入
+a	光标后插入
+A	行尾插入
+o	当前行下面新建一行插入
+O	当前行上面新建一行插入
+s	删除当前光标下面的字符，并且插入
+S	删除当前行并且插入</code></pre>
+
+<p>当你输入完成时，要保存文件时。那么你需要从先从插入模式退出普通模式再进行保存，从输入模式到普通模式的按键是：</p>
+
+<pre><code>EXC   （一般都是电脑中最左上角的那个按键 ，不知道你有没有用过这个一按键）
+ctrl-c 
+ctrl-[</code></pre>
+
+<p><strong>其中&#8221;ctrl-c&#8221; 与EXC 和&#8221;ctrl-<span>&#8220;是有点区别的__</span></strong></p>
+
+<p>你按了这些键后就已经从插入模式进入了普通模式。</p>
+
+<p>你想要保存文件，那么你需要进入命令模式（底行模式） 输入 英文状态下面的冒号 : 进入命令模式后，输入&#8221;w&#8221; ，回车，此时文件就保存了，（如果没有文件名，它会提示你要输入文件名，此时你只需要在w空格后加上你要保存的路径加文件名就可以了，如果是在当前的文件夹下面，那么只需要加文件名就可以了） 回车后，文件就会被保存，并且回到普通模式当中。</p>
+
+<p>要是这时你已经对文件已经操作完成了，不需要再编辑了，需要退出编辑。那么同样，你需要到普通模式再到命令模式，输入q回车，那vim就会退出了。如果你的文件有改动，还没有保存，它会提示你要先保存文件才可以退出，如果你确实是不想保存退出，那么你就需要在q后面加一个叹号。这时它就不会保存你的文件修改也会退出。</p>
+
+<p>其中保存和退出这两个可以一起使用。即进入命令模式后：&#8221;wq&#8221; ，保存并且退出。</p>
+
+<p>如果你要放弃当前的所有修改，这时你当然可以进入命令模式然后再按&#8221;q!&#8221;退出后再重新打开这一个文件。其实有一个更快的命令，那就是&#8221;e!&#8221;,这样它就会把上面那些的命令都执行了。</p>
+
+<p><strong>tips</strong> 如果你的文件已经有了文件名，你确实又是想保存并且退出，那么还有一个快捷键可以在普通模式下面用 ZZ</p>
+<hr />
+<p><strong>总结</strong></p>
+
+<pre><code>学到这里，相信你是可以用vim来:编辑文件,修改文件，保存文件。这些都是所有编辑器的基本功能。但是暂时看来，这样的一个编辑器比windows下面的记事本都要糟糕。为什么还要用它？但是我告诉你，如果你只是只用vim的这些功能，你真的是不要用vim了。下面就开始介绍一下它比其它编辑器操作方便的地方。</code></pre>
+
+<h3 id='15_'>1.5 光标的移动</h3>
+
+<pre><code>如果你看了上面的内容，你应该知道vim是一个模式编辑器。那我们为什么要模式编辑器呢？因为vim的主要思想就是让你的手不用离开键盘也可 以做更多的操作。为了实现这一功能，就给vim设置了不同的模式，在不同的模式下面键盘的按键操作就会有不同的响应.所以在不同模式下面相同的 操作可能都会有不同的响应结果。所以在你用vim的时候，你应该要很清楚你当前是在什么样的模式下面。一些常用到的模式之间的转换上面已经介绍 到了。下面来谈一下各个模式下面的一些操作吧！</code></pre>
+
+<p>＋ 普通模式 普通模式下面主要的任务就是： 1. 实现各个模式间的转换。 * 例如：我们想从插入模式转到命令模式，那么我们需要先从插入模式转到普通模式，再从普通模式转到命令模式。在没有配置的情况下面你是不可能直接从插入模式直接地转到命令模式的。（当然你可以自定义快捷键来实现这一功能） 2. <strong>光标的快速定位。</strong> * 要想vim给你带来提高编辑效率，那么这定位的方法你一定要熟练。例如你想要到行首，到行尾，向后一个字符，向前移动一个字符……只要你熟练这个定位的方法，你就可以不用鼠标来快速定位你想要编辑的位置了。下面是vim快速定位的按键及其对应的作用。</p>
+
+<pre><code>按键      作用
+--------------------------------------------------------------------------------------------------------------
+h         光标向前移动一个字
+j         光标向下移动一行
+k         光标向上移动一行
+l         光标向后移动字
+W,w       光标移动到下一个单词的开头,(中文的话就会移动一个小句)
+E,e       光标移动到下一个单词结尾,(中文是以小句为单位)
+B,b       光标移动到上一个单词的开头
+0         移动到行首
+$         移动支行末
++         移动到下一行开头
+-         移动到上一行开头
+(         移动到当前句子开头
+)         移动到下一个句子开头
+{         移动到当前这一段开头
+}         移动到下一段开头
+[[        移动到当前这一节的开头
+]]        移动到下一节的开头
+--------------------------------------------------------------------------------------------------------------
+ctrl-f    往前滚动一整屏
+ctrl-b    往后滚动一整屏
+ctrl-d    往前滚动半屏
+ctrl-u    往后滚动半屏
+ctrl-e    往后滚动一行
+ctrl-y    往前滚动一行
+z&lt;ENTER&gt;  光标所在的行移动屏幕的顶端
+z.        光标所在的行移动到屏幕中间
+z-        光标所在的行移动到屏幕低端
+gg        光标移动到文件的头部
+G         光标移动到文件最尾的行
+nG        n为数字，光标移动到第n行（相当于命令行下面的n）
+H         移动到屏幕顶端的行
+M         移动到屏幕中央的行
+L         移动到屏幕的底端的行
+nH        移动到屏幕顶端往下的第n行
+nL        移动到屏幕底端往上的第n行
+^         移动到当前行的第一个非空格处
+n|		  移动到当前行的第n列</code></pre>
+
+<p>以上就是基本的移动的操作按键了。在分隔线上面的按键还是可以配合一些其它的动作，也可以在前面加一个量，如我想向下移动5行，这样你可以&#8221;jjjjj&#8221;连续按五个&#8221;j&#8221;,但是你还可以&#8221;5j&#8221;,这样就表示向下移动五行。其它的相似。删除光标行和下面的一行，你可以&#8221;dj&#8221;,(d表示要执行删除的操作，j表示要删除那里的);</p>
+
+<p><strong>tips</strong></p>
+
+<pre><code>还有一个是行中的定位，f+想定位到的字符 ,如&quot;fa&quot;,光标移动到下一个&quot;a&quot;出现的地方。如果想是到下一个&quot;b&quot;出现的地方，那就是&quot;fb&quot;;如果想到上一个呢？那就是把小写的&quot;f&quot;换成大写的&quot;F&quot;就可以了。</code></pre>
+
+<h3 id='vim'>vim中的小技巧</h3>
+
+<p>删除没有空格的空行 :g/^$/d 删除空行中的空格 (把空格到行尾替换为空) :%s/^\s+$// 或： :%s/ //gi</p>
+
+<p>删除多行空行为单一空行 :%s/\n{2,}/\r\r/</p>
+	</div>
+</div>
+<script src="/bootstrap3/dist/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="/bootstrap3/dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>
+

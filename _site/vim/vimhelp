@@ -1,0 +1,81 @@
+VIM - Vi IMproved 7.4 (2013 Aug 10, compiled Nov  7 2013 00:27:38)
+
+用法: vim [参数] [文件 ..]       编辑指定的文件
+  或: vim [参数] -               从标准输入(stdin)读取文本
+  或: vim [参数] -t tag          编辑 tag 定义处的文件
+  或: vim [参数] -q [errorfile]  编辑第一个出错处的文件
+
+参数:
+   --			在这以后只有文件名
+   -g			使用图形界面 (同 "gvim")
+   -f  或  --nofork	前台: 启动图形界面时不 fork
+   -v			Vi 模式 (同 "vi")
+   -e			Ex 模式 (同 "ex")
+   -E			Improved Ex mode
+   -s			安静(批处理)模式 (只能与 "ex" 一起使用)
+   -d			Diff 模式 (同 "vimdiff")
+   -y			容易模式 (同 "evim"，无模式)
+   -R			只读模式 (同 "view")
+   -Z			限制模式 (同 "rvim")
+   -m			不可修改(写入文件)
+   -M			文本不可修改
+   -b			二进制模式
+   -l			Lisp 模式
+   -C			兼容传统的 Vi: 'compatible'
+   -N			不完全兼容传统的 Vi: 'nocompatible'
+   -V[N][fname]		Be verbose [level N] [log messages to fname]
+   -D			调试模式
+   -n			不使用交换文件，只使用内存
+   -r			列出交换文件并退出
+   -r (跟文件名)		恢复崩溃的会话
+   -L			同 -r
+   -A			以 Arabic 模式启动
+   -H			以 Hebrew 模式启动
+   -F			以 Farsi 模式启动
+   -T <terminal>	设定终端类型为 <terminal>
+   -u <vimrc>		使用 <vimrc> 替代任何 .vimrc
+   -U <gvimrc>		使用 <gvimrc> 替代任何 .gvimrc
+   --noplugin		不加载 plugin 脚本
+   -P[N]		打开 N 个标签页 (默认值: 每个文件一个)
+   -o[N]		打开 N 个窗口 (默认值: 每个文件一个)
+   -O[N]		同 -o 但垂直分割
+   +			启动后跳到文件末尾
+   +<lnum>		启动后跳到第 <lnum> 行
+   --cmd <command>	加载任何 vimrc 文件前执行 <command>
+   -c <command>		加载第一个文件后执行 <command>
+   -S <session>		加载第一个文件后执行文件 <session>
+   -s <scriptin>	从文件 <scriptin> 读入正常模式的命令
+   -w <scriptout>	将所有输入的命令追加到文件 <scriptout>
+   -W <scriptout>	将所有输入的命令写入到文件 <scriptout>
+   -x			编辑加密的文件
+   -display <display>	将 vim 与指定的 X-server 连接
+   -X			不连接到 X Server
+   --remote <files>	如有可能，在 Vim 服务器上编辑文件 <files>
+   --remote-silent <files>  同上，找不到服务器时不抱怨
+   --remote-wait <files>  同 --remote 但会等待文件完成编辑
+   --remote-wait-silent <files>  同上，找不到服务器时不抱怨
+   --remote-tab[-wait][-silent] <files>  As --remote but use tab page per file
+   --remote-send <keys>	送出 <keys> 到 Vim 服务器并退出
+   --remote-expr <expr>	在 Vim 服务器上求 <expr> 的值并打印结果
+   --serverlist		列出可用的 Vim 服务器名称并退出
+   --servername <name>	发送到或成为 Vim 服务器 <name>
+   --startuptime <file>	Write startup timing messages to <file>
+   -i <viminfo>		使用 <viminfo> 取代 .viminfo
+   -h  或  --help	打印帮助(本信息)并退出
+   --version		打印版本信息并退出
+
+gvim (Athena 版本) 可识别的参数:
+   -display <display>	在 <display> 上运行 vim
+   -iconic		启动后最小化
+   -background <color>	使用 <color> 作为背景色 (也可用 -bg)
+   -foreground <color>	使用 <color> 作为一般文字颜色 (也可用 -fg)
+   -font <font>	使用 <font> 作为一般字体 (也可用 -fn)
+   -boldfont <font>	使用 <font> 作为粗体字体
+   -italicfont <font>	使用 <font> 作为斜体字体
+   -geometry <geom>	使用 <geom> 作为初始位置 (也可用 -geom)
+   -borderwidth <width>	设定边框宽度为 <width> (也可用 -bw)
+   -scrollbarwidth <width> 设定滚动条宽度为 <width> (也可用 -sw)
+   -menuheight <height>	设定菜单栏高度为 <height> (也可用 -mh)
+   -reverse		使用反显 (也可用 -rv)
+   +reverse		不使用反显 (也可用 +rv)
+   -xrm <resource>	设定指定的资源
