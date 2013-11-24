@@ -5,7 +5,7 @@ title : vim从零基础入门
 
 # vim玩家
 
-> 给你一个vim命令，你能折腾一个晚上，等你学会了配置vim，你能为它折腾一辈子。
+> 教你一个vim命令，你能折腾一个晚上，教会了你配置vim，你能为它折腾一辈子。
 
 ---- 
 ## 一、入门
@@ -22,19 +22,19 @@ title : vim从零基础入门
 
 * 基本模式　
 
-		1. 普通模式　   ( vim启动时的模式，这时你可以移动光标)
-		2. 插入模式　   ( 这个模式故名思义就是插入字符串的，可以在普通模式下按i,I,A,a,S,s进入)
-		3. 可视模式　   ( 可以说这个就是键盘的选择模式)
-		4. 选择模式　   ( 这个模式就是用鼠标进行文本的高亮选择)
-		5. 命令行模式　 ( 这个模式你可以执行一些vim的命令)
-		6. EX模式　     ( 也就是执行多个vim的命令，命令行模式只会执行一个命令)
+	1. 普通模式　   ( vim启动时的模式，这时你可以移动光标)
+	2. 插入模式　   ( 这个模式故名思义就是插入字符串的，可以在普通模式下按i,I,A,a,S,s进入)
+	3. 可视模式　   ( 可以说这个就是键盘的选择模式)
+	4. 选择模式　   ( 这个模式就是用鼠标进行文本的高亮选择)
+	5. 命令行模式　 ( 这个模式你可以执行一些vim的命令)
+	6. EX模式　     ( 也就是执行多个vim的命令，命令行模式只会执行一个命令)
 
 * 派生模式
 
-		1. 插入普通模式　   ( 执行一个普通模式的操作后就回到插入模式,ctrl-o进入)
-		2. 插入可视模式　   ( 执行一个可视的操作，当选择区域取消时回到插入模式，ctrl-o进入普通模式选择一个可视的规则开始)
-		3. 插入的选择模式　 ( 插入模式下面拖拽鼠标进入，当选区取消时时候，vim返回插入模式)
-		4. 替换模式　       ( 替换一个字，或者一段文本。普通模式下面按r 或者R进入)
+	1. 插入普通模式　   ( 执行一个普通模式的操作后就回到插入模式,ctrl-o进入)
+	2. 插入可视模式　   ( 执行一个可视的操作，当选择区域取消时回到插入模式，ctrl-o进入普通模式选择一个可视的规则开始)
+	3. 插入的选择模式　 ( 插入模式下面拖拽鼠标进入，当选区取消时时候，vim返回插入模式)
+	4. 替换模式　       ( 替换一个字，或者一段文本。普通模式下面按r 或者R进入)
 
 **也有人把它分为三种模式**
 
@@ -51,44 +51,44 @@ title : vim从零基础入门
 
 1. 在linux下面一般都会已经安装有vim或者vi，你可以启动一个终端，输入vim或者vi来查看是否已经安装了。要是确实没有安装，你也可以安装它。可以使用源码安装和包安装。包安装会根据不同版本的系统用不同的安装方法：
 
-		#debian系列的系统
-		#网络
-		sudo apt-get install vim* 
-		#源码安装
-		#安装编译时所需要用到的库
-		sudo apt-get install libncurses5-dev
-		# 安装Mercurial (用于下载vim源码包)
-		sudo apt-get install mercurial
-		# 下载vim源码
-		hg clone https://vim.googlecode.com/hg/ vim
-		# 进入源码包配置编译安装vim
-		cd vim
-		./configure \
-		--enable-pythoninterp=yes \
-		--enable-perlinterp=yes \
-		--enable-rubyinterp=yes \
-		--enable-luainterp=yes \
-		--enable-tclinterp \
-		--enable-xim \
-		--enable-multibyte \
-		--enable-sniff \
-		--enable-fontset \
-		--enable-cscope \
-		--enable-gtk2-check \
-		--with-features=huge \
-		#如果检查编译环境没有错，就会生成好配置环境。报错那也应该是依赖关系没有解决，安装上对应的依赖包重新生成配置环境就行了。
-		#编译并安装
-		make && sudo make install
+	#debian系列的系统
+	#网络
+	sudo apt-get install vim* 
+	#源码安装
+	#安装编译时所需要用到的库
+	sudo apt-get install libncurses5-dev
+	# 安装Mercurial (用于下载vim源码包)
+	sudo apt-get install mercurial
+	# 下载vim源码
+	hg clone https://vim.googlecode.com/hg/ vim
+	# 进入源码包配置编译安装vim
+	cd vim
+	./configure \
+	--enable-pythoninterp=yes \
+	--enable-perlinterp=yes \
+	--enable-rubyinterp=yes \
+	--enable-luainterp=yes \
+	--enable-tclinterp \
+	--enable-xim \
+	--enable-multibyte \
+	--enable-sniff \
+	--enable-fontset \
+	--enable-cscope \
+	--enable-gtk2-check \
+	--with-features=huge \
+	#如果检查编译环境没有错，就会生成好配置环境。报错那也应该是依赖关系没有解决，安装上对应的依赖包重新生成配置环境就行了。
+	#编译并安装
+	make && sudo make install
 
-		#redhat系列的系统
-		网络安装
-		yum -y install vim*
-		#源码安装
-		#步骤与debian的一样。只是安装依赖包的命令不一样而已。
-		yum install ncurses-devel
-		yum install mercurial
-		hg clone https://vim.googlecode.com/hg/ vim
-		#剩下的步骤就可debian下面的一样了。
+	#redhat系列的系统
+	网络安装
+	yum -y install vim*
+	#源码安装
+	#步骤与debian的一样。只是安装依赖包的命令不一样而已。
+	yum install ncurses-devel
+	yum install mercurial
+	hg clone https://vim.googlecode.com/hg/ vim
+	#剩下的步骤就可debian下面的一样了。
 
 windows下面的安装。那就是点击下一步，下一步就可以了。安装包可以在一般的软件安装软件(金山软件，360软件中心)中找到。
 如果你不想用这些软件来安装，那么你可以到官网去下载。
