@@ -466,12 +466,17 @@ _另外_:如果你对vim的其它命令熟悉,你完全可以自定义你想要�
 
 
 ## 2.0 vim的折叠
-
-
+	
+	vim手册中介绍得很详细了。
 
 ## 2.1 vim保存当前的编辑环境
 
-
+	:help mksession
+	:help 'sessionoptions'
+	:help source
+	:help wviminfo
+	:help rviminfo
+	:help 'viminfo'
 
 ## 2.2 vim自带的补全
 
