@@ -1,5 +1,6 @@
 ---
-layout : git
+- layout : git
+- title : git命令的个人使用记录
 ---
 #git help
 ### git 返回上一个版本

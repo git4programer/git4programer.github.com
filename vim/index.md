@@ -491,7 +491,7 @@ _另外_ :如果你对vim的其它命令熟悉,你完全可以自定义你想要
 ## 1.11 vim保存当前的编辑环境
 
 	:help mksession
-	:help 'sessionoptions'
+	:help sessionoptions
 	:help source
 	:help wviminfo
 	:help rviminfo

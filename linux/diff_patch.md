@@ -1,6 +1,6 @@
 ----
 - layout:linux
--
+- title : 补丁的制作和应用dirff and patch
 ----
 
 
