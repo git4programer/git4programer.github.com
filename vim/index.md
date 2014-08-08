@@ -501,7 +501,7 @@ _另外_ :如果你对vim的其它命令熟悉,你完全可以自定义你想要
 
 	新版的vim默认就是支持语法补全的
 
-	ctrl+x ctrl+* 	 其中*包括
+	ctrl+x ctrl+\* 	 其中\*包括 p l k j 
 
 
 ## 1.13 有规则的修改
@@ -527,12 +527,12 @@ _另外_ :如果你对vim的其它命令熟悉,你完全可以自定义你想要
 
 -----
 
-#二.vim的进一步研究
+## 二.vim的进一步研究
 
 
-##2.0 vimrc的配置
+## 2.0 vimrc的配置
 
-[我的vimrc](http://github.com/git4programer/vim)
+[我的vimrc](http://github.com/kasonpasser/vim)
 
 ## 2.1 vim插件
 

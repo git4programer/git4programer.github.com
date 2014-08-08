@@ -6,7 +6,7 @@
 
 ## 补丁的制作与应用
 
-nux下patch的制作和应用]</ref>
+linux下patch的制作和应用]
 
 {{Hint|本文目前的多数内容是对《Linux下patch的制作和应用》的修正、整理与重新排版。}}
 
