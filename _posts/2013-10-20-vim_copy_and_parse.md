@@ -1,5 +1,5 @@
 ---
-layout: vim
+layout: default
 title: "vim的复制与粘贴"
 description: "vim复制，vim粘贴"
 category: "vim"

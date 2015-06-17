@@ -1,13 +1,12 @@
 ---
-layout: linux
+layout: default
 title: "linux_wget 下载"
 description: "linux wget下载"
 category: "linux"
 tags: [wget,linux]
 ---
-{% include JB/setup %}
 
-
+## wget 下载站
  4 建立简单的robots.txt文件：
 
 $ cat robots.txt
