@@ -4,6 +4,6 @@ description: 我活在這個世界上，也只不過是一個 "過客" 而已
 
 permalink: /:year/:month/:day/:title/
 paginate: 10
-highlighter: true
+highlighter: pygments
 
 exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']
